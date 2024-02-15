@@ -1,12 +1,7 @@
 
-const getPokemonById = require('./js-foundation/06-promises');
+const {buildLogger} = require('./plugins');
 
-getPokemonById(23)
-    .then((pokemon) => console.log({ pokemon }))
-    //.catch((err) => console.log({ err }))
-    .finally(() => console.log('Finalmente'));
+const logger = buildLogger('apps.js');
 
-
-// setTimeout(() => {
-//     console.log(info)
-// }, 3000);
+logger.log("Hola mundo");
+logger.error("Simulando un error");
