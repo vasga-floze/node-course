@@ -25,7 +25,3 @@ export const getUserById = (id: number, callback: (err?: string, user?: User) =>
 }
 
 //getUserById(1);
-
-module.exports = {
-    getUserById,
-}
