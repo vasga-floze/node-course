@@ -15,8 +15,8 @@ const { SHELL, USERNAME, TERM_PROGRAM, USERPROFILE } = process.env;
 //console.table({SHELL, USERNAME, TERM_PROGRAM, USERPROFILE});
 
 //desestructurar un array
-const characters = ['Flash', 'Superman', 'Green Lantern' , 'Batman'];
+export const characters = ['Flash', 'Superman', 'Green Lantern' , 'Batman'];
 
 const [, , Flash, Superman] = characters;
 
-console.log(Superman);
+//console.log(Superman);
