@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1708623819037" clover="3.2.0">
-  <project timestamp="1708623819037" name="All files">
+<coverage generated="1708624985682" clover="3.2.0">
+  <project timestamp="1708624985682" name="All files">
     <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1" elements="9" coveredelements="9" complexity="0" loc="7" ncloc="7" packages="1" files="1" classes="1"/>
     <file name="get-age.plugin.ts" path="C:\Users\Vasti Gabriela Flore\Desktop\Node\02-bases\src\plugins\get-age.plugin.ts">
       <metrics statements="7" coveredstatements="7" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>

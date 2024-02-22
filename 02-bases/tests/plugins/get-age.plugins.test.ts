@@ -8,10 +8,13 @@ describe('plugins/get-age.plugin', ()=>{
         expect(typeof age).toBe('number');
     });
 
-    test('getAge() should return current age', () => {    
+    test('getAge() should return current age', () => {   
+
         const birthdate = '1985-10-21';
         const age = getAge(birthdate);
-        const calculatedAge = new Date(Date.now() - new Date(birthdate).getTime()).getFullYear();
-        const invalidBirthdates = [null, undefined, '', 4567];
+
+        const calculatedAge = new Date().getFullYear() - new Date(birthdate).getFullYear();
+
+        expect(age).toBe(calculatedAge);
     });
 });
