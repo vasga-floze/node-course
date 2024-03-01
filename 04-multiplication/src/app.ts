@@ -1,22 +1,15 @@
-import fs from 'fs';
+import { yarg } from "./config/plugins/args.plugin"
 
-const numero = 7;
-let outputMessage = '';
-let message = `
-============================
-        Tabla del ${numero}
-============================\n`;
+// console.log(process.argv);
 
-for (let i = 1; i <= 10; i++) {
-    outputMessage += `${numero} x ${[i]} = ${numero * i}\n`;
+// console.log(yarg);
+
+(async()=>{
+    await main();
+})();
+
+async function main(){
+    const { b: base, l: limit, s: showTable, n: fileName, d: fileDestination } = yarg;
+    
+    console.log(yarg)
 }
-
-outputMessage = message + outputMessage;
-console.log(outputMessage);
-
-const outputPath = 'outputs/';
-fs.mkdirSync(outputPath, { recursive: true });
-
-// Guardar en un archivo el resultado de la tabla
-fs.writeFileSync(`${outputPath}/tabla-${numero}.txt`, outputMessage);
-console.log('Tabla guardada en outputs/tabla-' + numero + '.txt');
