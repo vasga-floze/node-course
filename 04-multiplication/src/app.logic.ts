@@ -1,14 +1,14 @@
 import fs from 'fs';
 
-const numero = 7;
+const base = 7;
 let outputMessage = '';
 let message = `
 ============================
-        Tabla del ${numero}
+        Tabla del ${base}
 ============================\n`;
 
 for (let i = 1; i <= 10; i++) {
-    outputMessage += `${numero} x ${[i]} = ${numero * i}\n`;
+    outputMessage += `${base} x ${[i]} = ${base * i}\n`;
 }
 
 outputMessage = message + outputMessage;
@@ -18,5 +18,5 @@ const outputPath = 'outputs/';
 fs.mkdirSync(outputPath, { recursive: true });
 
 // Guardar en un archivo el resultado de la tabla
-fs.writeFileSync(`${outputPath}/tabla-${numero}.txt`, outputMessage);
-console.log('Tabla guardada en outputs/tabla-' + numero + '.txt');
+fs.writeFileSync(`${outputPath}/tabla-${base}.txt`, outputMessage);
+console.log('Tabla guardada en outputs/tabla-' + base + '.txt');
