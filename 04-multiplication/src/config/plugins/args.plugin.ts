@@ -21,6 +21,7 @@ export const yarg = yargs(hideBin(process.argv) )
     default: false,
     describe: 'Show multiplication table'
   })
+  //new options(yargs)
   .option('n',{
     alias: 'name',
     type: 'string',
