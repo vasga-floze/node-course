@@ -8,7 +8,14 @@ const runCommand = async (args: string[]) => {
 
 describe('Test ars.plugin.ts', () => {
 
-    test('Should return default values', async()=> {
+    const originalArgv = process.argv;
+
+    beforeEach(()=>{
+        process.argv = originalArgv;
+        jest.resetModules();
+    });
+
+    test('Should return default values', async () => {
 
         const argv = await runCommand(['-b', '5']);
         //console.log(argv);
@@ -22,4 +29,19 @@ describe('Test ars.plugin.ts', () => {
         }));
 
     });
+
+    test('Should return configuration with custom values', async () => {
+
+        const argv = await runCommand(['-b', '8', '-l', '20', '-s', '-n', 'custom-name', '-d', 'custom-dir']);
+
+        expect(argv).toEqual(expect.objectContaining({
+            b: 8,
+            l: 20,
+            s: true,
+            n: 'custom-name',
+            d: 'custom-dir',
+        }));
+
+    });
+
 });
