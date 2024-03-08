@@ -1,3 +1,9 @@
+import { Server } from "./presentation/server";
 
-export const name: string = 'Gabriela!';
-console.log(name);
+(async () => {
+    main();
+})();
+
+function main() {
+    Server.start();
+}
