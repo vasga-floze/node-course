@@ -1,6 +1,7 @@
 import { yarg } from "./config/plugins/args.plugin"
 import { ServerApp } from "./presentation/server-app";
 
+//funcion asincrona autoinvocada
 (async () => {
     await main();
 })();
