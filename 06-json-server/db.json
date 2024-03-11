@@ -1,0 +1,54 @@
+{
+    "posts": [
+      {
+        "id": "1",
+        "title": "a title",
+        "views": 100,
+        "content": "This is the content of the first post."
+      },
+      {
+        "id": "2",
+        "title": "another title",
+        "views": 200,
+        "content": "This is the content of the second post."
+      },
+      {
+        "id": "3",
+        "title": "An informative post",
+        "views": 350,
+        "content": "This post provides valuable information about a specific topic."
+      },
+      {
+        "id": "4",
+        "title": "A captivating story",
+        "views": 420,
+        "content": "This post engages the reader with a compelling narrative that keeps them hooked."
+      }
+    ],
+    "comments": [
+      {
+        "id": "1",
+        "text": "a comment about post 1",
+        "postId": "1"
+      },
+      {
+        "id": "2",
+        "text": "another comment about post 1",
+        "postId": "1"
+      },
+      {
+        "id": "3",
+        "text": "A valuable insight on post 3",
+        "postId": "3"
+      },
+      {
+        "id": "4",
+        "text": "An engaging response to post 4",
+        "postId": "4"
+      }
+    ],
+    "profile": {
+      "name": "typicode"
+    }
+  }
+  
