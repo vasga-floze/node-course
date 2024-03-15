@@ -1,5 +1,13 @@
 import { CronService } from "./cron/cron-service";
 import { CheckService } from "../domain/use-cases/checks/check-service";
+import { LogRepositoryImpl } from "../infraestructure/repositories/log-repository.impl";
+import { FileSystemDataSource } from "../infraestructure/datasources/file-system.datasource";
+
+
+//la instancia que se va a mandar a todos los use cases que puedan requerir el repositorio
+const fileSystemLogRepository = new LogRepositoryImpl(
+    new FileSystemDataSource(),
+);
 
 export class Server {
 
@@ -13,27 +21,12 @@ export class Server {
             () => {
                 const url = 'https://google.com';
                 new CheckService(
+                    fileSystemLogRepository,
                     () => console.log(`${url} is ok`),
                     (error) => console.log(error)
                 ).execute(url);
                 //new CheckService().execute('http://localhost:3000/');
             }
         );
-
-        // CronService.createJob(
-        //     '*/2 * * * * *',
-        //     () => {
-        //         const date = new Date();
-        //         console.log('2 seconds', date);
-        //     }
-        // );
-
-        // CronService.createJob(
-        //     '*/3 * * * * *',
-        //     () => {
-        //         const date = new Date();
-        //         console.log('3 seconds', date);
-        //     }
-        // );
     }
 }

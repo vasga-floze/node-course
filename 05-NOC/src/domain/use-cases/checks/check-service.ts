@@ -1,3 +1,5 @@
+import { LogEntity, LogSeverityLevel } from "../../entities/log.entity";
+import { LogRepository } from "../../repository/log.repository";
 
 interface ICheckServiceUseCase {
     execute(url: string): Promise<boolean>;
@@ -9,6 +11,7 @@ type ErrorCallback = (error: string) => void;
 export class CheckService implements ICheckServiceUseCase {
 
     constructor(
+        private readonly logRepository: LogRepository,
         private readonly successCalback: SuccessCallback,
         private readonly errorCalback: ErrorCallback
     ) { }
@@ -20,15 +23,20 @@ export class CheckService implements ICheckServiceUseCase {
                 throw new Error(`Invalid URL ${url}`);
             }
 
+            //se crea una instancia de la entidad y se le pasan los dos parametros
+            const log = new LogEntity(`Service ${url} working`, LogSeverityLevel.low);
+            //se manda a guardar
+            this.logRepository.saveLog(log);
+
             this.successCalback();
 
             return true;
 
         } catch (error) {
-
-            console.log(`${error}`);
-
-            this.errorCalback(`${error}`);
+            const errorMessage = `${error}`;
+            const log = new LogEntity(errorMessage, LogSeverityLevel.low);
+            this.logRepository.saveLog(log);
+            this.errorCalback(errorMessage);
             return false;
         }
     }
