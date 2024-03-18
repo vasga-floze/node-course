@@ -24,7 +24,11 @@ export class CheckService implements ICheckServiceUseCase {
             }
 
             //se crea una instancia de la entidad y se le pasan los dos parametros
-            const log = new LogEntity(`Service ${url} working`, LogSeverityLevel.low);
+            const log = new LogEntity({
+                message: `Service ${url} working`,
+                level: LogSeverityLevel.low,
+                origin: 'check-service.ts'
+            });
             //se manda a guardar
             this.logRepository.saveLog(log);
 
@@ -35,7 +39,11 @@ export class CheckService implements ICheckServiceUseCase {
 
         } catch (error) {
             const errorMessage = `${url} is not ok. ${error}`;
-            const log = new LogEntity(errorMessage, LogSeverityLevel.high);
+            const log = new LogEntity({
+                message: `Service ${url} working`,
+                level: LogSeverityLevel.high,
+                origin: 'check-service.ts'
+            });
             this.logRepository.saveLog(log);
             //evaluar si existe y luego mandar a llamar
             this.errorCalback && this.errorCalback(errorMessage);
