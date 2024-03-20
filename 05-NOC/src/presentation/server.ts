@@ -3,12 +3,15 @@ import { CheckService } from "../domain/use-cases/checks/check-service";
 import { LogRepositoryImpl } from "../infraestructure/repositories/log-repository.impl";
 import { FileSystemDataSource } from "../infraestructure/datasources/file-system.datasource";
 import { EmailService } from "./email/email.service";
+import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 
 
 //la instancia que se va a mandar a todos los use cases que puedan requerir el repositorio
 const fileSystemLogRepository = new LogRepositoryImpl(
     new FileSystemDataSource(),
 );
+
+const emailService = new EmailService();
 
 export class Server {
 
@@ -17,12 +20,15 @@ export class Server {
 
         console.log('Server started...');
         //mandar email
-        const emailService = new EmailService(
-            fileSystemLogRepository
-        );
+        new SendEmailLogs(
+            emailService,
+            fileSystemLogRepository,
+        ).execute(
+            ['gabriela.floze@gmail.com', 'gzelaya@trainingroots.xyz']
+        )
 
         // // enviando correo electronico con adjuntos
-        emailService.sendEmailWithFileSystemLogs(['gabriela.floze@gmail.com', 'gzelaya@trainingroots.xyz']);
+        //emailService.sendEmailWithFileSystemLogs(['gabriela.floze@gmail.com', 'gzelaya@trainingroots.xyz']);
 
         // emailService.sendEmail({
         //     to: '.@gmail.com',
