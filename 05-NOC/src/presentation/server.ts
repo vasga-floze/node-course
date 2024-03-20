@@ -19,7 +19,7 @@ export class Server {
         //mandar email
         const emailService = new EmailService();
         // emailService.sendEmail({
-        //     to: 'gabriela.floze@gmail.com',
+        //     to: '.@gmail.com',
         //     subject: 'Prueba de correo',
         //     htmlBody: `
         //     <h3>Logs de sistema - NOC</h3>
@@ -28,18 +28,8 @@ export class Server {
         //     `
         // });
 
+        //enviando correo electronico con adjuntos
+        //emailService.sendEmailWithFileSystemLogs(['gabriela.floze@gmail.com', 'gzelaya@trainingroots.xyz']);
 
-        // CronService.createJob(
-        //     '*/5 * * * * *',
-        //     () => {
-        //         const url = 'http://google.com/';
-        //         new CheckService(
-        //             fileSystemLogRepository,
-        //             () => console.log(`${url} is ok`),
-        //             (error) => console.log(error)
-        //         ).execute(url);
-        //         //new CheckService().execute('http://localhost:3000/');
-        //     }
-        // );
     }
 }
