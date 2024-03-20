@@ -17,7 +17,13 @@ export class Server {
 
         console.log('Server started...');
         //mandar email
-        const emailService = new EmailService();
+        const emailService = new EmailService(
+            fileSystemLogRepository
+        );
+
+        // // enviando correo electronico con adjuntos
+        emailService.sendEmailWithFileSystemLogs(['gabriela.floze@gmail.com', 'gzelaya@trainingroots.xyz']);
+
         // emailService.sendEmail({
         //     to: '.@gmail.com',
         //     subject: 'Prueba de correo',
@@ -27,9 +33,6 @@ export class Server {
         //     <p>Ver logs adjuntos</p>
         //     `
         // });
-
-        //enviando correo electronico con adjuntos
-        //emailService.sendEmailWithFileSystemLogs(['gabriela.floze@gmail.com', 'gzelaya@trainingroots.xyz']);
 
     }
 }
