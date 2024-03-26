@@ -29,7 +29,7 @@ export class LogEntity {
     //factory constructor
     //este metodo fromJson permite crear instancias basadas en el json: string
     static fromJson = (json: string): LogEntity => {
-        const { message, level, createdAt, origin} = JSON.parse(json);
+        const { message, level, createdAt, origin } = JSON.parse(json);
         //en esta parte debe agregarse validaciones como el mensaje es requerido, etc 
 
         const log = new LogEntity({
@@ -42,4 +42,13 @@ export class LogEntity {
         return log;
 
     };
+
+    static fromObject = (object: { [key: string]: any }): LogEntity => {
+        const { message, level, createdAt, origin } = object;
+        const log = new LogEntity({
+            message, level, createdAt, origin
+        });
+
+        return log;
+    }
 }
