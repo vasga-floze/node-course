@@ -40,7 +40,7 @@ export class CheckService implements ICheckServiceUseCase {
         } catch (error) {
             const errorMessage = `${url} is not ok. ${error}`;
             const log = new LogEntity({
-                message: `Service ${url} working`,
+                message: `Service ${url} is not working`,
                 level: LogSeverityLevel.high,
                 origin: 'check-service.ts'
             });

@@ -11,7 +11,7 @@ import { LogSeverityLevel } from "../domain/entities/log.entity";
 //la instancia que se va a mandar a todos los use cases que puedan requerir el repositorio
 const logRepository = new LogRepositoryImpl(
     // new FileSystemDataSource(),
-    new MongoLogDatasource(),
+    new FileSystemDataSource(),
 );
 
 const emailService = new EmailService();
@@ -44,7 +44,7 @@ export class Server {
         // });
 
         //obtener los logs de la bd
-        const logs = await logRepository.getLogs(LogSeverityLevel.low);
+        const logs = await logRepository.getLogs(LogSeverityLevel.high);
         console.log(logs);
 
         //crear log en mongo db
