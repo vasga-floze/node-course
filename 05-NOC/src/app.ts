@@ -1,3 +1,4 @@
+import { PrismaClient } from "@prisma/client";
 import { envs } from "./config/plugins/env.plugings";
 import { MongoDatabase } from "./data/mongo/init";
 import { LogModel } from "./data/mongo/models/log.model";
@@ -14,5 +15,19 @@ async function main() {
         dbName: envs.MONGO_DB_NAME
     })
 
-    Server.start();
+    //Escribir en PosgreSQL
+    const prisma = new PrismaClient();
+    // const newLog = await prisma.logModel.create({
+    //     data: {
+    //         level: 'HIGH',
+    //         message: 'Test message',
+    //         origin: 'App.ts'
+    //     }
+    // });
+    
+    //Leer de PostgreSQL
+    const logs = await prisma.logModel.findMany();
+    console.log(logs)
+    
+    // Server.start();
 }
