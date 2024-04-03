@@ -6,12 +6,14 @@ import { EmailService } from "./email/email.service";
 import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 import { MongoLogDatasource } from "../infraestructure/datasources/mongo-log.datasource";
 import { LogSeverityLevel } from "../domain/entities/log.entity";
+import { PostgresLogDatasource } from "../infraestructure/datasources/posgres-log.datasource";
 
 
 //la instancia que se va a mandar a todos los use cases que puedan requerir el repositorio
 const logRepository = new LogRepositoryImpl(
     // new FileSystemDataSource(),
-    new FileSystemDataSource(),
+    //new FileSystemDataSource(),
+    new PostgresLogDatasource(),
 );
 
 const emailService = new EmailService();
@@ -44,21 +46,21 @@ export class Server {
         // });
 
         //obtener los logs de la bd
-        const logs = await logRepository.getLogs(LogSeverityLevel.high);
-        console.log(logs);
+        //const logs = await logRepository.getLogs(LogSeverityLevel.high);
+        //console.log(logs);
 
-        //crear log en mongo db
-        // CronService.createJob(
-        //     '*/5 * * * * *',
-        //     () => {
-        //         const url = 'https://google.com';
+        //crear log en el datasource (db) elegido
+        CronService.createJob(
+            '*/5 * * * * *',
+            () => {
+                const url = 'https://google.com';
 
-        //         new CheckService(
-        //             logRepository,
-        //             () => console.log(`${url} is ok`),
-        //             (error) => console.log(error),
-        //         ).execute(url);
-        //     }
-        // );
+                new CheckService(
+                    logRepository,
+                    () => console.log(`${url} is ok`),
+                    (error) => console.log(error),
+                ).execute(url);
+            }
+        );
     };
 }

@@ -27,7 +27,7 @@ async function main() {
     
     //Leer de PostgreSQL
     const logs = await prisma.logModel.findMany();
-    console.log(logs)
+    //console.log(logs)
     
-    // Server.start();
+    Server.start();
 }
