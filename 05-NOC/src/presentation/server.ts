@@ -7,12 +7,17 @@ import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 import { MongoLogDatasource } from "../infraestructure/datasources/mongo-log.datasource";
 import { LogSeverityLevel } from "../domain/entities/log.entity";
 import { PostgresLogDatasource } from "../infraestructure/datasources/posgres-log.datasource";
+import { CheckServiceMultiple } from "../domain/use-cases/checks/check-service-multiple";
 
 
-//la instancia que se va a mandar a todos los use cases que puedan requerir el repositorio
-const logRepository = new LogRepositoryImpl(
-    // new FileSystemDataSource(),
-    //new FileSystemDataSource(),
+//instancias de los usecase con diferentes datasources
+const fsLogRepository = new LogRepositoryImpl(
+    new FileSystemDataSource()
+);
+const mongoLogRepository = new LogRepositoryImpl(
+    new MongoLogDatasource(),
+);
+const postgresLogRepository = new LogRepositoryImpl(
     new PostgresLogDatasource(),
 );
 
@@ -54,9 +59,9 @@ export class Server {
             '*/5 * * * * *',
             () => {
                 const url = 'https://google.com';
-
-                new CheckService(
-                    logRepository,
+                //usando el caso de uso de multiples datasources
+                new CheckServiceMultiple(
+                    [fsLogRepository, postgresLogRepository, mongoLogRepository],
                     () => console.log(`${url} is ok`),
                     (error) => console.log(error),
                 ).execute(url);
