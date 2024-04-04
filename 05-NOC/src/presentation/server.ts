@@ -55,17 +55,17 @@ export class Server {
         //console.log(logs);
 
         //crear log en el datasource (db) elegido
-        CronService.createJob(
-            '*/5 * * * * *',
-            () => {
-                const url = 'https://google.com';
-                //usando el caso de uso de multiples datasources
-                new CheckServiceMultiple(
-                    [fsLogRepository, postgresLogRepository, mongoLogRepository],
-                    () => console.log(`${url} is ok`),
-                    (error) => console.log(error),
-                ).execute(url);
-            }
-        );
+        // CronService.createJob(
+        //     '*/5 * * * * *',
+        //     () => {
+        //         const url = 'https://google.com';
+        //         //usando el caso de uso de multiples datasources
+        //         new CheckServiceMultiple(
+        //             [fsLogRepository, postgresLogRepository, mongoLogRepository],
+        //             () => console.log(`${url} is ok`),
+        //             (error) => console.log(error),
+        //         ).execute(url);
+        //     }
+        // );
     };
 }
